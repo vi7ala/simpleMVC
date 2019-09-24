@@ -6,9 +6,18 @@ use application\core\Controller;
 
 class AccountController extends Controller {
 
+    public function before()
+    {
+        $this->view->layout = 'custom';
+    }
+
     public function loginAction()
     {
-        echo 'Login Page<br>';
-        var_dump($this->route);
+        $this->view->render('Login Page');
+    }
+
+    public function registerAction()
+    {
+        $this->view->render('Register PAge');
     }
 }

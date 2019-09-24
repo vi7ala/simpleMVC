@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: 38067
- * Date: 20.09.2019
- * Time: 17:55
- */
+<h3>Регистрация</h3>
+<form action="">
+    <label for="login">Login</label>
+    <input type="text" name="login" id="login">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+</form>
