@@ -2,6 +2,8 @@
 
 namespace application\core;
 
+use application\core\View as View;
+
 class Router {
 
     protected $routes = [];
@@ -9,8 +11,7 @@ class Router {
 
     public function __construct()
     {
-//        $routes = require ROUTES;
-        $routes = require 'application/config/routes.php';
+        $routes = require ROUTES;
         foreach ($routes as $key => $value){
             $this->add($key, $value);
         }
@@ -45,11 +46,13 @@ class Router {
                     $controller = new $path($this->params);
                     $controller->$action();
                 } else {
-                    echo "Action not found";
+                    View::errorCode(404);
                 }
             } else {
-                echo 'Controller not found';
+                View::errorCode(404);
             }
+        } else {
+            View::errorCode(404);
         }
     }
     
