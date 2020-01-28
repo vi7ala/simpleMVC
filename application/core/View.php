@@ -16,16 +16,33 @@ class View {
 
     public function render($title, $vars = [])
     {
-
-        $view = APP_DIR.'/views/'.$this->path.'.php';
+        extract($vars);
+        $view = APP_VIEWS.'/'.$this->path.'.php';
         if (file_exists($view)){
             ob_start();
             require $view;
             $content = ob_get_clean();
-            require APP_DIR.'/views/layouts/'.$this->layout.'.php';
+            require APP_VIEWS.'/layouts/'.$this->layout.'.php';
         } else {
             echo "Вид не найден.".$this->path;
         }
 
+    }
+
+    public static function errorCode($code)
+    {
+        http_response_code($code);
+        $path = APP_VIEWS.'/errors/'.http_response_code().'.php';
+        if (file_exists($path)){
+            require $path;
+
+        }
+        exit();
+    }
+
+    public function redirect($url)
+    {
+        header('Location: '.$url);
+        exit();
     }
 }
